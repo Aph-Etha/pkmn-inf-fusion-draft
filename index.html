@@ -24,44 +24,43 @@
 
 </header>
 
-<section id="setup">
+<section id="setup" class="heroScreen">
 
-<div class="card">
-
-<h2>Game Setup</h2>
-
-<div class="guideCard">
-    <h3>Implementation guide</h3>
-    <p>Next steps for finishing the project:</p>
-    <ul>
-        <li>Drop official Pokémon Infinite Fusion sprite sheets into the assets folders.</li>
-        <li>Point each card to the correct sprite path by matching the saved dex values.</li>
-        <li>Wire fusion art generation to a local image pipeline or a CDN-hosted asset pack.</li>
-        <li>Optionally add a custom roster editor and a saved team export for sharing.</li>
-    </ul>
+<div class="heroBackdrop" aria-hidden="true">
+    <div class="backdropOrb orbOne"></div>
+    <div class="backdropOrb orbTwo"></div>
+    <div class="backdropOrb orbThree"></div>
+    <div class="spriteScene">
+        <div class="spriteSprite spriteA"></div>
+        <div class="spriteSprite spriteB"></div>
+        <div class="spriteSprite spriteC"></div>
+        <div class="spriteSprite spriteD"></div>
+    </div>
 </div>
 
-<label>
+<div class="heroContent">
 
-Players
+<div class="setupPanel card">
+    <div class="setupPanelHeader">
+        <h3>Start the draft</h3>
+        <p>(Don't all be Braden)</p>
+    </div>
 
-<select id="playerCount">
+    <label class="fieldLabel">
+        Players
+        <select id="playerCount">
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4" selected>4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </label>
 
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4" selected>4</option>
-<option value="5">5</option>
-<option value="6">6</option>
+    <div id="playerInputs"></div>
 
-</select>
-
-</label>
-
-<div id="playerInputs"></div>
-
-<button id="beginGame">
-Start Draft
-</button>
+    <button id="beginGame">Begin Draft</button>
+</div>
 
 </div>
 
