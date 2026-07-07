@@ -1,0 +1,538 @@
+/* ==========================================================
+   DRAFT ORDER WHEEL
+   ========================================================== */
+
+#wheelScreen{
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:24px;
+
+    animation:fadeIn .35s ease;
+    padding:24px 0 36px;
+
+}
+
+/* ==========================================================
+   TITLE
+   ========================================================== */
+
+#wheelScreen h2{
+
+    font-size:2.2rem;
+
+    color:var(--accent);
+
+    text-shadow:
+        2px 2px 0 black,
+        0 0 12px rgba(255,204,0,.25);
+
+}
+
+/* ==========================================================
+   CONTAINER
+   ========================================================== */
+
+#wheelContainer{
+
+    position:relative;
+
+    width:min(700px,90vw);
+
+    aspect-ratio:1;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+/* ==========================================================
+   CANVAS
+   ========================================================== */
+
+#wheel{
+
+    width:100%;
+
+    height:100%;
+
+    border-radius:50%;
+
+    background:radial-gradient(circle at top, #3a4153 0%, #20242e 65%, #141821 100%);
+
+    border:8px solid #12151b;
+
+    box-shadow:
+
+        0 0 0 6px rgba(255,255,255,0.08),
+        0 0 40px rgba(0,0,0,.45),
+        inset 0 0 40px rgba(255,255,255,.04);
+
+}
+
+/* ==========================================================
+   POINTER
+   ========================================================== */
+
+#wheelContainer::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:-12px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:0;
+
+    height:0;
+
+    border-left:22px solid transparent;
+
+    border-right:22px solid transparent;
+
+    border-top:0;
+
+    border-bottom:48px solid var(--accent);
+
+    filter:
+
+        drop-shadow(0 3px 4px rgba(0,0,0,.45));
+
+    z-index:10;
+
+}
+
+/* ==========================================================
+   HUB
+   ========================================================== */
+
+#wheelHub{
+
+    position:absolute;
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            #eeeeee 0%,
+
+            #d7d7d7 35%,
+
+            #9d9d9d 100%
+
+        );
+
+    border:5px solid #444;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-weight:bold;
+
+    color:#222;
+
+    font-size:18px;
+
+    pointer-events:none;
+
+    box-shadow:
+
+        inset 0 0 8px rgba(255,255,255,.45),
+
+        0 5px 15px rgba(0,0,0,.45);
+
+}
+
+/* ==========================================================
+   STATUS
+   ========================================================== */
+
+#wheelStatus{
+
+    min-height:34px;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    text-align:center;
+
+    color:var(--accent);
+    text-shadow:0 2px 8px rgba(0,0,0,.35);
+
+}
+
+/* ==========================================================
+   BUTTONS
+   ========================================================== */
+
+#spinButton{
+
+    min-width:220px;
+
+    font-size:24px;
+
+    padding:
+
+        16px
+
+        36px;
+
+    box-shadow:0 14px 30px rgba(0,0,0,.25);
+
+}
+
+#spinButton.spinning{
+
+    pointer-events:none;
+
+    opacity:.6;
+
+}
+
+/* ==========================================================
+   PICK ORDER RESULTS
+   ========================================================== */
+
+#draftOrderResults{
+
+    width:min(700px,95vw);
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+.resultCard{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:15px 18px;
+
+    border-radius:12px;
+
+    background:#2f3440;
+
+    border:2px solid var(--border);
+
+    box-shadow:var(--shadow);
+
+    transition:.25s;
+
+}
+
+.resultCard.revealed{
+
+    animation:resultReveal .45s ease;
+
+}
+
+.resultCard .position{
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    color:var(--accent);
+
+}
+
+.resultCard .player{
+
+    font-size:22px;
+
+    font-weight:bold;
+
+}
+
+.resultCard .choice{
+
+    opacity:.8;
+
+    font-size:16px;
+
+}
+
+/* ==========================================================
+   ANIMATIONS
+   ========================================================== */
+
+.spinningWheel{
+
+    animation:wheelGlow 1s infinite alternate;
+
+}
+
+@keyframes wheelGlow{
+
+    from{
+
+        filter:
+
+            drop-shadow(
+                0 0 6px rgba(255,204,0,.15)
+            );
+
+    }
+
+    to{
+
+        filter:
+
+            drop-shadow(
+                0 0 20px rgba(255,204,0,.45)
+            );
+
+    }
+
+}
+
+@keyframes resultReveal{
+
+    from{
+
+        opacity:0;
+
+        transform:
+
+            translateY(25px)
+
+            scale(.95);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:none;
+
+    }
+
+}
+
+.tick{
+
+    animation:tick .12s linear;
+
+}
+
+@keyframes tick{
+
+    0%{
+
+        transform:rotate(.5deg);
+
+    }
+
+    50%{
+
+        transform:rotate(-.5deg);
+
+    }
+
+    100%{
+
+        transform:none;
+
+    }
+
+}
+
+.winnerFlash{
+
+    animation:winnerFlash 1.2s ease;
+
+}
+
+@keyframes winnerFlash{
+
+    0%{
+
+        box-shadow:
+
+            0 0 0 rgba(255,204,0,0);
+
+    }
+
+    25%{
+
+        box-shadow:
+
+            0 0 30px rgba(255,204,0,.8);
+
+    }
+
+    50%{
+
+        box-shadow:
+
+            0 0 12px rgba(255,204,0,.35);
+
+    }
+
+    75%{
+
+        box-shadow:
+
+            0 0 30px rgba(255,204,0,.8);
+
+    }
+
+    100%{
+
+        box-shadow:none;
+
+    }
+
+}
+
+/* ==========================================================
+   SPIN COUNTER
+   ========================================================== */
+
+#spinCounter{
+
+    font-size:18px;
+
+    color:var(--text2);
+
+    opacity:.85;
+
+}
+
+/* ==========================================================
+   ORDER CHOICE PANEL
+   ========================================================== */
+
+#orderChoice{
+
+    display:none;
+
+    width:min(700px,95vw);
+
+    background:#2b303c;
+
+    border:2px solid var(--border);
+
+    border-radius:14px;
+
+    padding:24px;
+
+    box-shadow:var(--shadow);
+
+}
+
+#orderChoice h3{
+
+    margin-bottom:18px;
+
+    color:var(--accent);
+
+    text-align:center;
+
+}
+
+.orderButtons{
+
+    display:grid;
+
+    grid-template-columns:
+
+        repeat(auto-fit,minmax(100px,1fr));
+
+    gap:12px;
+
+}
+
+.orderButtons button{
+
+    padding:16px;
+
+    font-size:20px;
+
+}
+
+.orderButtons button:disabled{
+
+    opacity:.35;
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+@media(max-width:900px){
+
+    #wheelStatus{
+
+        font-size:20px;
+
+    }
+
+    .resultCard{
+
+        flex-direction:column;
+
+        gap:8px;
+
+        text-align:center;
+
+    }
+
+}
+
+@media(max-width:650px){
+
+    #spinButton{
+
+        width:100%;
+
+        font-size:20px;
+
+    }
+
+    #wheelScreen h2{
+
+        font-size:1.8rem;
+
+    }
+
+    #wheelHub{
+
+        width:70px;
+
+        height:70px;
+
+        font-size:15px;
+
+    }
+
+}

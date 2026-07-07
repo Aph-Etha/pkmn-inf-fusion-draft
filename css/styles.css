@@ -1,0 +1,645 @@
+:root{
+
+--bg:#1b1d24;
+--panel:#262a33;
+--panel-light:#323744;
+
+--primary:#d32f2f;
+--primary-dark:#9f2020;
+
+--accent:#ffcc00;
+--accent-dark:#f0b700;
+
+--text:#ffffff;
+--text2:#d8d8d8;
+
+--border:#4b5161;
+
+--radius:12px;
+
+--shadow:
+0 8px 20px rgba(0,0,0,.35);
+
+font-family:
+"Segoe UI",
+Tahoma,
+Geneva,
+Verdana,
+sans-serif;
+
+}
+
+*{
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+
+}
+
+body{
+
+background:
+linear-gradient(
+180deg,
+#17191f,
+#1f232d
+);
+
+color:var(--text);
+
+min-height:100vh;
+
+}
+
+#app{
+
+width:min(1800px,95vw);
+
+margin:auto;
+
+padding:25px;
+
+}
+
+header{
+
+text-align:center;
+
+margin-bottom:25px;
+
+}
+
+header h1{
+
+font-size:3rem;
+
+letter-spacing:2px;
+
+color:var(--accent);
+
+text-shadow:
+
+2px 2px black,
+
+0 0 10px rgba(255,204,0,.3);
+
+}
+
+.card{
+
+background:var(--panel);
+
+border:
+
+2px solid var(--border);
+
+border-radius:var(--radius);
+
+box-shadow:var(--shadow);
+
+padding:25px;
+
+margin-bottom:25px;
+
+}
+
+h2{
+
+margin-bottom:20px;
+
+}
+
+label{
+
+display:block;
+
+margin-bottom:15px;
+
+font-weight:bold;
+
+}
+
+input,
+select{
+
+width:100%;
+
+padding:12px;
+
+border:none;
+
+border-radius:8px;
+
+font-size:16px;
+
+margin-top:6px;
+
+background:#454b58;
+
+color:white;
+
+outline:none;
+
+}
+
+input:focus,
+select:focus{
+
+box-shadow:
+
+0 0 0 3px
+
+rgba(255,204,0,.35);
+
+}
+
+button{
+
+cursor:pointer;
+
+border:none;
+
+border-radius:10px;
+
+padding:
+
+14px
+28px;
+
+font-size:18px;
+
+font-weight:bold;
+
+background:
+
+linear-gradient(
+
+180deg,
+
+var(--primary),
+
+var(--primary-dark)
+
+);
+
+color:white;
+
+transition:
+
+transform .18s,
+
+filter .18s,
+
+box-shadow .18s;
+
+box-shadow:
+
+0 4px 10px rgba(0,0,0,.35);
+
+}
+
+button:hover{
+
+transform:translateY(-2px);
+
+filter:brightness(1.08);
+
+}
+
+.guideCard{
+    background:linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:16px;
+    padding:16px 18px;
+    margin:18px 0 22px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+.guideCard h3{
+    margin-bottom:8px;
+    color:var(--accent);
+}
+
+.guideCard ul{
+    margin:10px 0 0 18px;
+    color:var(--text2);
+    line-height:1.55;
+}
+
+button:active{
+
+transform:translateY(1px);
+
+}
+
+button:disabled{
+
+opacity:.45;
+
+cursor:not-allowed;
+
+}
+
+.hidden{
+
+display:none!important;
+
+}
+
+#playerInputs{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(auto-fit,minmax(250px,1fr));
+
+gap:12px;
+
+margin:
+
+20px 0;
+
+}
+
+#players{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(auto-fit,minmax(320px,1fr));
+
+gap:18px;
+
+margin-top:25px;
+
+}
+
+.playerCard{
+    background:linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:18px;
+    padding:16px;
+    box-shadow:0 12px 30px rgba(0,0,0,0.28);
+    backdrop-filter:blur(8px);
+}
+
+.playerAvatar{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    color:#111;
+    background:linear-gradient(135deg, var(--accent), #fff1a8);
+    box-shadow:0 6px 16px rgba(0,0,0,0.2);
+}
+
+.playerMeta{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.playerNameWrap{
+    display:flex;
+    flex-direction:column;
+}
+
+.playerNameWrap span{
+    font-size:0.8rem;
+    opacity:0.7;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+}
+
+.playerCard.active{
+    border-color:var(--accent);
+    box-shadow:0 16px 40px rgba(255,204,0,0.18);
+}
+
+
+.playerCard h3{
+
+margin-bottom:12px;
+
+color:var(--accent);
+
+}
+
+.teamGrid{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(3,1fr);
+
+gap:10px;
+
+}
+
+.pokemonSlot{
+
+aspect-ratio:1;
+
+background:#3b404d;
+
+border-radius:8px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+overflow:hidden;
+
+border:2px solid transparent;
+
+}
+
+.pokemonSlot img{
+
+width:90%;
+
+height:90%;
+
+object-fit:contain;
+
+image-rendering:pixelated;
+
+}
+
+.placeholder{
+
+opacity:.25;
+
+font-size:12px;
+
+text-align:center;
+
+}
+
+#roundInfo{
+
+font-size:1.8rem;
+
+font-weight:bold;
+
+margin-bottom:15px;
+
+text-align:center;
+
+}
+
+#draftOrder{
+
+display:flex;
+
+justify-content:center;
+
+flex-wrap:wrap;
+
+gap:12px;
+
+margin-bottom:25px;
+
+}
+
+.orderBadge{
+
+padding:
+
+10px
+18px;
+
+border-radius:40px;
+
+background:#3a404c;
+
+border:2px solid var(--border);
+
+font-weight:bold;
+
+}
+
+.orderBadge.active{
+
+background:var(--accent);
+
+color:black;
+
+}
+
+#pokemonChoices{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(auto-fit,minmax(180px,1fr));
+
+gap:18px;
+
+margin-top:15px;
+
+}
+
+.pokemonCard{
+
+background:var(--panel-light);
+
+border-radius:12px;
+
+padding:15px;
+
+cursor:pointer;
+
+transition:.2s;
+
+border:2px solid transparent;
+
+text-align:center;
+
+}
+
+.pokemonCard:hover{
+
+transform:translateY(-5px);
+
+border-color:var(--accent);
+
+}
+
+.pokemonCard img{
+
+width:120px;
+
+height:120px;
+
+object-fit:contain;
+
+image-rendering:pixelated;
+
+}
+
+.pokemonCard h4{
+
+margin-top:10px;
+
+font-size:18px;
+
+}
+
+.fadeIn{
+
+animation:fade .4s ease;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+
+transform:translateY(15px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:none;
+
+}
+
+}
+
+.slideUp{
+
+animation:slideUp .45s ease;
+
+}
+
+@keyframes slideUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:none;
+
+}
+
+}
+
+.pulse{
+
+animation:pulse 1s infinite;
+
+}
+
+@keyframes pulse{
+
+0%{
+
+transform:scale(1);
+
+}
+
+50%{
+
+transform:scale(1.03);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
+
+}
+
+::-webkit-scrollbar{
+
+width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#2d313c;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#666d7d;
+
+border-radius:12px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+background:#7d8596;
+
+}
+
+@media(max-width:900px){
+
+header h1{
+
+font-size:2.2rem;
+
+}
+
+.teamGrid{
+
+grid-template-columns:
+
+repeat(4,1fr);
+
+}
+
+}
+
+@media(max-width:650px){
+
+#players{
+
+grid-template-columns:1fr;
+
+}
+
+.teamGrid{
+
+grid-template-columns:
+
+repeat(3,1fr);
+
+}
+
+button{
+
+width:100%;
+
+}
+
+}
