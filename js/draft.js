@@ -593,7 +593,10 @@ Draft.generateRoundChoices = function(){
 
     Game.currentChoices = [];
 
-const boardSize = 4;
+    const boardSize = Math.max(
+        1,
+        Number(Game.playerCount) || 4
+    );
 
     for(
 
